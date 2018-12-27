@@ -10,13 +10,14 @@
         <?php
             if(isset($_POST['naam']) && $_POST['naam'] != '')
             {
-                echo "<tr><td>Naam: </td><td>" . $_POST['naam'] . "</td></tr>\n";
+                $naam = filter_var($_POST['naam'], FILTER_SANITIZE_STRING);
+                echo "<tr><td>Naam: </td><td>" . $naam . "</td></tr>\n";
             }else
             {
                 echo "<tr><td>Naam: </td><td><em>Vul een naam in!</em></td></tr>\n";
             }
             
-            if(isset($_POST['email']) && $_POST['email'] != '')
+            if(isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ) 
             {
                 echo "<tr><td>Email: </td><td>" . $_POST['email'] . "</td></tr>\n";
             }else
